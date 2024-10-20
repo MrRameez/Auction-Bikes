@@ -68,80 +68,90 @@ function Signin() {
   };
 
   return (
-    <section className="h-screen container">
-      <div className="h-full">
-        <div className="flex h-full flex-wrap items-center justify-center lg:justify-between">
+    <section className="h-screen bg-gray-100 dark:bg-gray-900">
+      <div className="container mx-auto px-4 h-full flex justify-center items-center">
+        <div className="grid lg:grid-cols-2 gap-10 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+          
           {/* Left column with image */}
-          <div className="shrink-1 mb-12 grow-0 basis-auto md:w-9/12 lg:w-6/12 xl:w-6/12">
+          <div className="hidden lg:block">
             <img
               src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-              className="w-full"
+              className="w-full h-auto rounded-lg"
               alt="Sample image"
             />
           </div>
 
           {/* Right column for the sign-up form */}
-          <div className="md:w-8/12 lg:w-5/12 xl:w-5/12">
-            <form>
+          <div className="w-full">
+            <h2 className="text-2xl font-bold text-center text-gray-700 dark:text-gray-200 mb-6">
+              Sign Up for an Account
+            </h2>
+            <form className="space-y-6">
               {/* Sign up with Google */}
-              <div className="flex items-center justify-center lg:justify-start mb-4">
-                <p className="text-lg me-4">Sign up with</p>
+              <div className="text-center">
                 <Button
                   onClick={handleGoogleLogin}
                   type="primary"
                   size="large"
-                  className="bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 w-full lg:w-auto"
+                  className="w-full lg:w-auto bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 text-white rounded-full"
                 >
                   Login With Google
                 </Button>
               </div>
 
               {/* Or separator */}
-              <div className="my-4 flex items-center before:flex-1 before:border-t before:border-neutral-300 after:flex-1 after:border-t after:border-neutral-300">
-                <p className="mx-4 text-center font-semibold dark:text-white">Or</p>
+              <div className="flex items-center justify-center">
+                <span className="text-gray-400 dark:text-gray-500">Or sign up with your email</span>
               </div>
 
               {/* Username input */}
-              <div className="relative mb-6">
+              <div className="relative">
                 <input
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="peer block w-full rounded bg-transparent px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear dark:text-white dark:placeholder:text-neutral-300"
+                  className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Username"
                 />
               </div>
 
               {/* Email input */}
-              <div className="relative mb-6">
+              <div className="relative">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="peer block w-full rounded bg-transparent px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear dark:text-white dark:placeholder:text-neutral-300"
+                  className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Email address"
                 />
               </div>
 
               {/* Password input */}
-              <div className="relative mb-6">
+              <div className="relative">
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="peer block w-full rounded bg-transparent px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear dark:text-white dark:placeholder:text-neutral-300"
+                  className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Password"
                 />
               </div>
 
               {/* Register button */}
-              <div className="text-center lg:text-left">
-                <LoginButton text={"Sign Up"} isLoading={loading} onClick={handleSignUp} />
+              <div className="text-center">
+                <LoginButton
+                  text={"Sign Up"}
+                  isLoading={loading}
+                  className="w-full py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white"
+                  onClick={handleSignUp}
+                />
+              </div>
 
-                {/* Login redirect */}
-                <p className="mt-2 pt-1 text-sm font-semibold">
-                  Have an account?
-                  <Link to="/login" className="text-danger transition duration-150 ease-in-out hover:text-danger-600">
+              {/* Login redirect */}
+              <div className="text-center mt-4">
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Have an account?{" "}
+                  <Link to="/login" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">
                     Login
                   </Link>
                 </p>
