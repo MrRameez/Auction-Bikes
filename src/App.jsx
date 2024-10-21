@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Home from './pages/home/home';
 import AllProduct from './pages/home/allProduct';
 import ProductDetail from './pages/home/productDetail';
@@ -31,7 +31,7 @@ function App() {
           {/* AddProduct route without restriction in App.js */}
           <Route path="addProduct" element={<AddProduct />} />
 
-          <Route path="profile" element={<UserProfile />} />
+          {/* <Route path="profile" element={<UserProfile />} /> */}
         </Route>
 
         {/* User Routes */}

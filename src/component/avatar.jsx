@@ -37,62 +37,62 @@ function Avatar({ src }) {
   };
 
   return (
-    <div className="flex items-center" ref={dropdownRef}>
-      <div className="ml-3">
-        <button
-          type="button"
-          onClick={toggleDropdown}
-          className="flex rounded-full bg-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-gray-100"
-          id="user-menu-button"
-          aria-expanded={isDropdownOpen}
-          aria-haspopup="true"
-        >
-          <span className="sr-only">Open user menu</span>
-          <img
-            className="h-8 w-8 rounded-full"
-            src={src || 'https://via.placeholder.com/150'} // Reliable fallback image URL
-            alt="Profile"
-            referrerPolicy="no-referrer" // Avoid referrer-related issues
-          />
-        </button>
+    <div className=" inline-block text-left" ref={dropdownRef}>
+      <button
+        type="button"
+        onClick={toggleDropdown}
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 hover:scale-105 transition-transform duration-200"
+        id="user-menu-button"
+        aria-expanded={isDropdownOpen}
+        aria-haspopup="true"
+      >
+        <span className="sr-only">Open user menu</span>
+        <img
+          className="w-full h-full rounded-full"
+          src={src || 'https://via.placeholder.com/150'}
+          alt="Profile"
+          referrerPolicy="no-referrer"
+        />
+      </button>
 
-        {isDropdownOpen && (
-          <div
-            className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="user-menu-button"
-          >
-            {/* Show these options for all users */}
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus:bg-gray-200"
+      {isDropdownOpen && (
+        <div
+          className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-lg bg-white shadow-xl ring-1 ring-black ring-opacity-5"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="user-menu-button"
+        >
+          <div className="py-1">
+            {/* Profile link */}
+            <Link
+              to="/users/profile"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 hover:text-black transition-colors duration-150"
               role="menuitem"
             >
               Your Profile
-            </a>
+            </Link>
 
-            {/* Show "Admin" link only for specific email */}
+            {/* Admin link for specific user */}
             {user && user.uid === "LSzRag8IhzgZXeUHJ1EsfoqD9gI3" && (
               <Link
                 to="/addProduct"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus:bg-gray-200"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 hover:text-black transition-colors duration-150"
                 role="menuitem"
               >
                 Admin
               </Link>
             )}
 
-            {/* Sign out option for all users */}
-            <Button
+            {/* Sign out option */}
+            <button
               onClick={handleSignOut}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus:bg-gray-200"
+              className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 hover:text-black transition-colors duration-150"
             >
               Sign out
-            </Button>
+            </button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

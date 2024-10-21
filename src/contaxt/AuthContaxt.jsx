@@ -18,24 +18,25 @@ function AuthContextProvider({ children }) {
       if (user) {
         try {
           const docRef = doc(db, "users", user.uid);
-          console.log("users Uid:");
+          // console.log("users Uid:");
           
 
           const userInfo = (await getDoc(docRef)).data();
 
-          console.log("User info:", userInfo);
+          // console.log("User info:", userInfo);
 
           setUser({
-            isLogin: true, // Use 'isLogin' instead of 'islogin' for consistency
+            isLogin: true,// Use 'isLogin' instead of 'islogin' for consistency
             ...userInfo,
           });
         } catch (error) {
-          console.error("Error fetching user info:", error);
+          // console.error("Error fetching user info:", error);
         }
       } else {
         setUser({ 
           isLogin: false,
           email: "",
+          
          });
       }
       setLoader(false);

@@ -15,7 +15,7 @@ function Header() {
   };
 
   return (
-    <header className="bg-white shadow-md overflow-hidden">
+    <header className="bg-white shadow-md overflow-hidden border-b-2">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
 
