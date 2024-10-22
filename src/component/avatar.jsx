@@ -40,7 +40,7 @@ function Avatar({ src }) {
       <button
         type="button"
         onClick={toggleDropdown}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r p-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 hover:scale-105 transition-transform duration-200"
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r p-1 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:scale-105 transition-transform duration-200"
         id="user-menu-button"
         aria-expanded={isDropdownOpen}
         aria-haspopup="true"
