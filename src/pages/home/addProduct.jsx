@@ -72,21 +72,21 @@ function AddProduct() {
             errorMsg={errors?.desc?.message}
           />
 
-          {/* Product Price and Quantity Inputs */}
+          {/* Product price and Quantity Inputs */}
           <div className="flex gap-2">
             <div className="w-1/2">
               <CustomInput
-                label={"Product Price"}
+                label={"Product price"}
                 type={"number"}
                 placeholder={"Enter product price"}
-                obj={register("Price", { 
+                obj={register("price", { 
                   required: "Product price is required",  
                   valueAsNumber: true,
-                  min: { value: 0, message: "Price cannot be negative" }
+                  min: { value: 0, message: "price cannot be negative" }
                 })}
-                fieldName={"Price"}
+                fieldName={"price"}
                 error={errors}
-                errorMsg={errors?.Price?.message}
+                errorMsg={errors?.price?.message}
               />
             </div>
             <div className="w-1/2">

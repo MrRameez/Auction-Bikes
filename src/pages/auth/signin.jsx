@@ -14,6 +14,7 @@ function Signin() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // Google Sign-In
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -31,7 +32,6 @@ function Signin() {
         displayName: user.displayName,
       });
 
-      // Navigate to home after login
       navigate("/");
       message.success("Account Created. Redirecting to home...");
     } catch (error) {
@@ -39,6 +39,7 @@ function Signin() {
     }
   };
 
+  // Email/Password Sign-Up
   const handleSignUp = async () => {
     if (!email || !password || !username) {
       message.error("Please fill out all fields");
@@ -47,10 +48,11 @@ function Signin() {
 
     try {
       setLoading(true);
+
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Add user information to Firestore
+      // Save user info in Firestore (⚠️ no password saved here for security)
       await setDoc(doc(db, "users", user.uid), {
         username,
         email,
@@ -77,7 +79,7 @@ function Signin() {
             <img
               src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
               className="w-full h-auto rounded-lg"
-              alt="Sample image"
+              alt="Sample"
             />
           </div>
 
@@ -87,7 +89,8 @@ function Signin() {
               Sign Up for an Account
             </h2>
             <form className="space-y-6">
-              {/* Sign up with Google */}
+              
+              {/* Google Sign In */}
               <div className="text-center">
                 <Button
                   onClick={handleGoogleLogin}
@@ -99,7 +102,7 @@ function Signin() {
                 </Button>
               </div>
 
-              {/* Or separator */}
+              {/* Separator */}
               <div className="flex items-center justify-center">
                 <span className="text-gray-400 dark:text-gray-500">Or sign up with your email</span>
               </div>
@@ -147,7 +150,7 @@ function Signin() {
                 />
               </div>
 
-              {/* Login redirect */}
+              {/* Redirect to login */}
               <div className="text-center mt-4">
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Have an account?{" "}

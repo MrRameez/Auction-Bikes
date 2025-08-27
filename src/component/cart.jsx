@@ -6,7 +6,7 @@ dayjs.extend(relativeTime);
 function Cart({ products }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6">
-      {products.map(({ image, Title, id, Price, desc, category, createdAt }) => (
+      {products.map(({ image, Title, id, price, desc, category, createdAt }) => (
         <Link to={`/products/${id}`} key={id} className="block">
           <div className="h-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl">
             <img
@@ -31,7 +31,7 @@ function Cart({ products }) {
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-indigo-600 font-bold text-base">
-                  ${Price}
+                  ${price}
                 </span>
                 <span className="text-indigo-500 text-xs font-medium inline-flex items-center hover:underline">
                   Learn More
@@ -58,3 +58,4 @@ function Cart({ products }) {
 }
 
 export default Cart;
+

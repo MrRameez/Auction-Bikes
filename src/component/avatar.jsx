@@ -73,7 +73,7 @@ function Avatar({ src }) {
             </Link>
 
             {/* Admin link for specific user */}
-            {user && user.uid === "LSzRag8IhzgZXeUHJ1EsfoqD9gI3" && (
+            {user && user.uid === "6dehg2WOqiaxTGAkIHMvQY1sJih1" && (
               <Link
                 to="/addProduct"
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 hover:text-black transition-colors duration-150"
