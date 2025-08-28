@@ -1,76 +1,79 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { db } from "../../utiles/firebase";
 import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
-import { message } from "antd";
+import { message, Button, Spin } from "antd";
+import { useNavigate } from "react-router";
+import { AuthContext } from "../../contaxt/AuthContaxt";
 
 function UserManage() {
+  const { user } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
+  // Admin check
+  useEffect(() => {
+    if (!user || user.uid !== "4NDC83H684QXgHJ7tFubCdsul2r2") {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
+  // Fetch users
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "users"));
-        const userList = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+        const snapshot = await getDocs(collection(db, "users"));
+        const userList = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setUsers(userList);
-      } catch (error) {
-        console.error("Error fetching users: ", error);
+      } catch (err) {
+        console.error(err);
+        message.error("Failed to fetch users.");
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchUsers();
-  }, []);
+    if (user && user.uid === "4NDC83H684QXgHJ7tFubCdsul2r2") {
+      fetchUsers();
+    }
+  }, [user]);
 
   // Toggle disable/enable
-  const toggleDisable = async (user) => {
+  const toggleDisable = async (u) => {
     try {
-      const userRef = doc(db, "users", user.id);
-      await updateDoc(userRef, { isDisabled: !user.isDisabled });
-      setUsers(
-        users.map((u) =>
-          u.id === user.id ? { ...u, isDisabled: !u.isDisabled } : u
-        )
-      );
-      message.success(
-        `User ${!user.isDisabled ? "disabled" : "enabled"} successfully!`
-      );
-    } catch (error) {
-      console.error("Error updating user status:", error);
+      const userRef = doc(db, "users", u.id);
+      await updateDoc(userRef, { isDisabled: !u.isDisabled });
+      setUsers(users.map(user => user.id === u.id ? { ...user, isDisabled: !u.isDisabled } : user));
+      message.success(`User ${!u.isDisabled ? "disabled" : "enabled"} successfully!`);
+    } catch (err) {
+      console.error(err);
       message.error("Failed to update user status.");
     }
   };
+
+  if (loading) return <Spin tip="Loading users..." className="mt-5" />;
 
   return (
     <div className="p-6">
       <h2 className="text-2xl font-semibold mb-4">All Users</h2>
       <ul className="space-y-3">
-        {users.map((user) => (
+        {users.map((u) => (
           <li
-            key={user.id}
+            key={u.id}
             className="flex items-center justify-between border p-3 rounded-lg shadow-md bg-gray-100"
           >
             <div>
-              <p className="text-lg font-medium">
-                Username: {user.username || "N/A"}
-              </p>
-              <p className="text-sm text-gray-600">Email: {user.email}</p>
-              <p className="text-sm text-red-500">
-                Status: {user.isDisabled ? "Disabled" : "Active"}
-              </p>
+              <p className="text-lg font-medium">Username: {u.username || "N/A"}</p>
+              <p className="text-sm text-gray-600">Email: {u.email}</p>
+              <p className="text-sm text-red-500">Status: {u.isDisabled ? "Disabled" : "Active"}</p>
             </div>
-
-            <button
-              className={`px-4 py-2 rounded-md font-medium text-white ${
-                user.isDisabled
-                  ? "bg-green-500 hover:bg-green-600"
-                  : "bg-red-500 hover:bg-red-600"
-              }`}
-              onClick={() => toggleDisable(user)}
+            <Button
+              className={u.isDisabled ? "bg-green-500 hover:bg-green-600" : "bg-red-500 hover:bg-red-600"}
+              onClick={() => toggleDisable(u)}
+              type="primary"
             >
-              {user.isDisabled ? "Enable" : "Disable"}
-            </button>
+              {u.isDisabled ? "Enable" : "Disable"}
+            </Button>
           </li>
         ))}
       </ul>

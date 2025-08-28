@@ -20,12 +20,8 @@ function AdminLayout() {
           <Link to={"/admin/bidsManage"}>
             <h1 className='cursor-pointer p-2 w-full hover:bg-slate-500 hover:text-zinc-50 rounded-md'>BidsManage</h1>
           </Link> 
-          <Link to={"/admin/analyticManage"}>
-            <h1 className='cursor-pointer p-2 w-full hover:bg-slate-500 hover:text-zinc-50 rounded-md'>AnalyticsManage</h1>
-          </Link> 
-          <Link to={"/admin/adminSetting"}>
-            <h1 className='cursor-pointer p-2 w-full hover:bg-slate-500 hover:text-zinc-50 rounded-md'>AdminSetting</h1>
-          </Link> 
+          
+          
         </div>
 
         {/* Main Content */}
