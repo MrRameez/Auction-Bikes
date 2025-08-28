@@ -34,24 +34,31 @@ function Header() {
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
                 <Link
-                  to="/team"
+                  to="/"
                   className="relative text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out hover:text-black group"
                 >
-                  Team
+                  Home
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-500 ease-in-out group-hover:w-full"></span>
                 </Link>
                 <Link
-                  to="/projects"
+                  to="/products"
                   className="relative text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out hover:text-black group"
                 >
-                  Projects
+                  products
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-500 ease-in-out group-hover:w-full"></span>
                 </Link>
                 <Link
-                  to="/calendar"
+                  to="/about"
                   className="relative text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out hover:text-black group"
                 >
-                  Calendar
+                  About
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-500 ease-in-out group-hover:w-full"></span>
+                </Link>
+                <Link
+                  to="/admin/userManage"
+                  className="relative text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out hover:text-black group"
+                >
+                  Admin
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-500 ease-in-out group-hover:w-full"></span>
                 </Link>
               </div>
@@ -85,22 +92,22 @@ function Header() {
       <div className={`${menuOpen ? 'block' : 'hidden'} sm:hidden`} id="mobile-menu">
         <div className="px-2 pt-2 pb-3 space-y-1">
           <Link
-            to="/team"
+            to="/"
             className="block text-gray-700 hover:text-black px-3 py-2 rounded-md text-base font-medium hover:underline"
           >
-            Team
+            Home
           </Link>
           <Link
-            to="/projects"
+            to="/products"
             className="block text-gray-700 hover:text-black px-3 py-2 rounded-md text-base font-medium hover:underline"
           >
-            Projects
+            Products
           </Link>
           <Link
-            to="/calendar"
+            to="/about"
             className="block text-gray-700 hover:text-black px-3 py-2 rounded-md text-base font-medium hover:underline"
           >
-            Calendar
+            About
           </Link>
         </div>
       </div>

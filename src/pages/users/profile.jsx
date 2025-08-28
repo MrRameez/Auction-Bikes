@@ -4,6 +4,8 @@ import { Button } from 'antd';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../utiles/firebase';
 import { useNavigate } from 'react-router';
+import { useEffect } from 'react';
+
 function UserProfile() {
   const { user } = useContext(AuthContext)
 
@@ -12,6 +14,12 @@ function UserProfile() {
       await signOut(auth);
       navigate("/");
     };
+
+    useEffect(() => {
+          if (!auth.currentUser) {
+            navigate("/login");
+          }
+        }, [navigate]);
   return (
     <div>
       <h1 className='font-bold text-3xl'>Hello {user.username || user.displayName}</h1>

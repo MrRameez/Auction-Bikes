@@ -17,10 +17,12 @@ const BidModal = ({ isModalOpen, onClose, title, price, productId, refetch, refe
       setLoading(true);
       const bidObj = {
         productId,
+        productTitle: title,
         userId: auth.currentUser.uid,
         bidPrice: Number(bidPrice),
         status: "pending",
         createdAt: serverTimestamp(),
+
       };
 
       const bidCollectionRef = collection(db, "bids");
@@ -39,7 +41,7 @@ const BidModal = ({ isModalOpen, onClose, title, price, productId, refetch, refe
 
   return (
     <Modal
-      title="Bid Modal"
+      title={title}
       footer={false}
       onCancel={onClose}
       open={isModalOpen}

@@ -12,6 +12,13 @@ import AddProduct from './pages/home/addProduct';
 import Login from './pages/auth/login';
 import { useContext } from 'react';
 import { AuthContext } from './contaxt/AuthContaxt';
+import About from './pages/home/about';
+import AdminLayout from './component/adminLayout';
+import UserManage from './pages/admin/userManage';
+import ProductManage from './pages/admin/productManage';
+import BidsManage from './pages/admin/bidsManage';
+import AnalyticManage from './pages/admin/analyticsManage';
+import AdminSetting from './pages/admin/adminSetting';
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -25,6 +32,7 @@ function App() {
         {/* Main Routes */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="/about" element={<About/>} />
           <Route path="products" element={<AllProduct />} />
           <Route path="products/:id" element={<ProductDetail />} />
 
@@ -39,6 +47,13 @@ function App() {
           <Route path="profile" element={<UserProfile />} />
           <Route path="products" element={<UserProduct />} />
           <Route path="bids" element={<UserBids />} />
+        </Route>
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="userManage" element={<UserManage/>}/>
+          <Route path="productManage" element={< ProductManage/>}/>
+          <Route path="bidsManage" element={<BidsManage/>}/>
+          <Route path="analyticManage" element={< AnalyticManage/>}/>
+          <Route path="adminSetting" element={<AdminSetting/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
